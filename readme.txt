@@ -1,24 +1,27 @@
 === Dastra CMP Wordpress Plugin ===
 Contributors: Dastra
 Donate link: https://www.dastra.eu
-Tags: CMP, cookies, consents management platform, universal consent
+Tags: CMP, cookies, consents management platform, universal consent, GDPR, Data subject rights, Data Protection
 Requires at least: 3.0.1
-Tested up to: 4.8
+Tested up to: 5.1
 Stable tag: 4.7
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
-Quickly add the Dastra CMP to your website. A free cookie consent management platform. Use it on your mobile or on your computer.
-Start it 
+Dastra is a simple and easy to use consent management platform. This plugin for Wordpress helps you to quickly integrate the widget.
 
 == Description ==
 
-Dastra is a free and beautiful CMP platform. It will store the cookie consents in a centralized platform
+Dastra is a free and beautiful cookie consent platform. It will store the cookie consents proof in a centralized data store.
+
+You can also use the Dastra platform to manage all the GDPR requirements like data processing records, data subject rights, audits, incident reports...etc...
+
+You'll also need to manage the prior consent for third party library (Chatbots, analytics...).
 
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/dastra` directory, or install the plugin through the WordPress plugins screen directly.
-2. Use the Settings->Crisp screen and click on "Link with Dastra
+2. Use the Settings->Dastra screen and click on "Link with Dastra"
 
 == Screenshots ==
 
@@ -29,4 +32,4 @@ Dastra is a free and beautiful CMP platform. It will store the cookie consents i
 == Changelog ==
 
 = 0.1 =
-* Dastrafirst release
+* Dastra plugin initial release
