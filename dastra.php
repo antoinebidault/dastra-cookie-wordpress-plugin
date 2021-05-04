@@ -4,8 +4,8 @@
  * @version 0.1
  * Plugin Name: Dastra
  * Plugin URI: http://wordpress.org/plugins/dastra/
- * Description: Dastra is cookie consent management platform
- * Author: Dastra IM
+ * Description: Dastra is a cookie consent management platform
+ * Author: Dastra SaS
  * Version: 0.1
  * Author URI: https://dastra.eu
  *
