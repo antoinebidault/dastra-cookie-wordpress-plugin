@@ -1,13 +1,13 @@
 <?php
 /**
  * @package Dastra
- * @version 0.21
+ * @version 0.1
  * Plugin Name: Dastra
  * Plugin URI: http://wordpress.org/plugins/dastra/
- * Description: Dastra is a Livechat plugin
+ * Description: Dastra is cookie consent management platform
  * Author: Dastra IM
- * Version: 0.21
- * Author URI: https://dastra.chat
+ * Version: 0.1
+ * Author URI: https://dastra.eu
  *
  * Text Domain: dastra
  * Domain Path: /languages/
@@ -17,24 +17,6 @@ add_action('admin_menu', 'dastra_create_menu');
 
 function dastra_create_menu() {
   add_menu_page(__('Dastra Settings', 'dastra'), __('Dastra Settings', 'dastra'), 'administrator', __FILE__, 'dastra_plugin_settings_page' , 'https://www.dastra.eu/favicon.ico');
-  add_action('admin_init', 'register_dastra_plugin_settings' );
-  // add_action('admin_init', 'register_dastra_plugin_onboarding');
-}
-
-/*
-function register_dastra_plugin_onboarding() {
-  $onboarding = get_option('dastra_onboarding');
-  $widget_id = get_option('widget_id');
-
-  if (empty($widget_id) && (empty($onboarding) || !$onboarding)) {
-    update_option("dastra_onboarding", true);
-    wp_redirect(admin_url('admin.php?page='.plugin_basename(__FILE__)));
-  }
-}*/
-
-function register_dastra_plugin_settings() {
-  register_setting( 'dastra-plugin-settings-group', 'widget_id' );
-  add_option('dastra_onboarding', false);
 }
 
 function dastra_plugin_settings_page() {
@@ -48,6 +30,10 @@ function dastra_plugin_settings_page() {
 
   if (isset($_GET["publicKey"]) && !empty($_GET["publicKey"])) {
     update_option("public_key", $_GET["publicKey"]);
+  }
+
+  if (isset($_GET["trackUser"]) && !empty($_GET["trackUser"])) {
+    update_option("track_user", $_GET["trackUser"]);
   }
 
   $widget_id = get_option('widget_id');
@@ -66,7 +52,6 @@ function dastra_plugin_settings_page() {
       <p class="dastra-subtitle"><?php _e('You can now use Dastra from your homepage.', 'dastra'); ?></p>
       <a class="dastra-button dastra" href="https://app.dastra.eu/workspace/<?php echo $workspace_id ?>/0/cookie-widget/integration/<?php echo $widget_id ?>/edit"><?php _e('Go to my Dastra settings', 'dastra'); ?></a>
       <a class="dastra-button dastra" href="https://app.dastra.eu/workspace/<?php echo $workspace_id ?>/0/cookie-widget/analytics?widgetId=<?php echo $widget_id ?>"><?php _e('Analytics', 'dastra'); ?></a>
-      <a class="dastra-button dastra" ><?php _e('Reset configuration', 'dastra'); ?></a>
       <a class="dastra-button dastra" href="<?php echo $add_to_dastra_link; ?>"><?php _e('Reconfigure', 'dastra'); ?></a>
     </div>
     <p class="dastra-notice"><?php _e('Loving Dastra <b style="color:red">♥</b> ? Rate us on the <a target="_blank" href="https://wordpress.org/support/plugin/dastra/reviews/?filter=5">Wordpress Plugin Directory</a>', 'dastra'); ?></p>
@@ -103,9 +88,9 @@ function dastra_sync_wordpress_user() {
   $nickname = $current_user->display_name;
 
   if (!empty($email)) {
-    $output .= '$dastra.push(["set", "cookie:userId", "' . $email . '"]);';
+    $output .= 'dastra.push(["set", "cookie:userId", "' . $email . '"]);';
   } else if (!empty($nickname)) {
-    $output .= '$dastra.push(["set", "cookie:userId", "' . $nickname . '"]);';
+    $output .= 'dastra.push(["set", "cookie:userId", "' . $nickname . '"]);';
   }
 
   return $output;
@@ -114,6 +99,7 @@ function dastra_sync_wordpress_user() {
 function dastra_hook_head() {
   $widget_id = get_option('widget_id');
   $public_key = get_option('public_key');
+  $track_user = get_option('track_user');
   $locale = str_replace("_", "-", strtolower(get_locale()));
 
   if (!isset($widget_id) || empty($widget_id)) {
@@ -122,11 +108,13 @@ function dastra_hook_head() {
 
   $output ="<script src='https://cdn.dastra.eu/dist/dastra.js?key=$public_key' async ></script>";
   $output .= "<div id='cookie-consent' data-widgetid='$widget_id' data-lang='$locale'></div>";
-  $output .= "<script>";
-  
-  $output .= dastra_sync_wordpress_user();
 
-  $output .= "</script>";
+  
+  if (!isset($widget_id) || empty($widget_id)) {
+    $output .= "<script>";
+    $output .= dastra_sync_wordpress_user();
+    $output .= "</script>";
+  }
   
   echo $output;
 }
