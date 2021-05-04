@@ -1,0 +1,1 @@
+## Dastra CMP Wordpress plugin
