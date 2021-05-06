@@ -37,6 +37,7 @@ function dastra_plugin_settings_page() {
   }
 
   $widget_id = get_option("widget_id");
+  $workspace_id = get_option("workspace_id");
   $is_dastra_working = isset($widget_id) && !empty($widget_id);
 
   // Check the callback nonce
@@ -91,9 +92,18 @@ add_action('wp_head', 'dastra_hook_head', 1);
 add_action('admin_enqueue_scripts', 'dastra_enqueue_stylesheet');
 
 function dastra_enqueue_stylesheet() {
-  wp_enqueue_style( 'style_dastra' , plugins_url('assets/style.css' , __FILE__ )), array(), 'all');
+  wp_enqueue_style( 'style_dastra' , plugins_url('assets/style.css' , __FILE__ ), array());
 }
 
+// Push the Dastra SDK async script
+add_action( 'wp_enqueue_scripts', 'dastra_enqueue_sdk_js');
+
+function dastra_enqueue_sdk_js(){
+  $public_key = get_option('public_key');
+	if (isset($public_key) && !empty($public_key)){
+		wp_enqueue_script( 'script_dastra', 'https://cdn.dastra.eu/sdk/dastra.js?key='. $public_key .'#asyncload', array(), null, true);
+	}
+}
 
 function dastra_sync_wordpress_user() {
   $output = "";
@@ -119,6 +129,7 @@ function dastra_sync_wordpress_user() {
   return $output;
 }
 
+
 function dastra_hook_head() {
   $widget_id = get_option('widget_id');
   $public_key = get_option('public_key');
@@ -129,12 +140,8 @@ function dastra_hook_head() {
     return;
   }
   
-  // Push the Dastra SDK async script
-  add_action( 'wp_enqueue_scripts',  function() use ($public_key) {
-    wp_enqueue_script( 'script_dastra_async', 'https://cdn.dastra.eu/dist/dastra.js?key='. $public_key .'#asyncload');
-  });
 
-  $output = "<div id='cookie-consent' data-widgetid='". $widget_id ."' data-lang='". $locale ."'></div>";
+  $output = "<div id='dastra-cookie-consent' data-widgetid='". $widget_id ."' data-lang='". $locale ."'></div>";
 
   if ($track_user) {
     $output .= "<script>";
