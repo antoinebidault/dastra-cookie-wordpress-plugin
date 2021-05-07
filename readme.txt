@@ -1,4 +1,4 @@
-=== Dastra CMP Wordpress Plugin ===
+=== Dastra CMP cookies ===
 Contributors: Dastra
 Donate link: https://www.dastra.eu
 Tags: CMP, cookies, consents management platform, universal consent, GDPR, Data subject rights, Data Protection
