@@ -3,8 +3,8 @@ Contributors: Dastra
 Donate link: https://www.dastra.eu
 Tags: CMP, cookies, consents management platform, universal consent, GDPR, Data subject rights, Data Protection
 Requires at least: 3.0.1
-Tested up to: 5.7.1
-Stable tag: 0.1.1
+Tested up to: 6.0.1
+Stable tag: 0.1.2
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -36,6 +36,9 @@ You'll also need to manage the prior consent for third party library (Chatbots, 
 3. Analytics
 
 == Changelog ==
+
+= 0.1.2 =
+* Tested up to 6.0.1
 
 = 0.1.1 =
 * Corrections
