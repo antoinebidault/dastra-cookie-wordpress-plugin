@@ -1,12 +1,12 @@
-dastra-widget<?php
+<?php
 /**
  * @package Dastra
- * @version 0.1.2
+ * @version 0.1.5
  * Plugin Name: Dastra
  * Plugin URI: http://wordpress.org/plugins/dastra/
  * Description: Dastra is a cookie consent management platform
  * Author: Dastra
- * Version: 0.1.2
+ * Version: 0.1.5
  * Author URI: https://dastra.eu
  *
  * Text Domain: dastra
@@ -88,7 +88,7 @@ function dastra_plugin_settings_page() {
   }
 }
 
-add_action('wp_body_open', 'dastra_hook_head', 1);
+add_action('wp_footer', 'dastra_hook_footer', 1);
 add_action('admin_enqueue_scripts', 'dastra_enqueue_stylesheet');
 
 function dastra_enqueue_stylesheet() {
@@ -130,7 +130,7 @@ function dastra_sync_wordpress_user() {
 }
 
 
-function dastra_hook_head() {
+function dastra_hook_footer() {
   $widget_id = get_option('widget_id');
   $public_key = get_option('public_key');
   $track_user = get_option('track_user');
@@ -140,7 +140,6 @@ function dastra_hook_head() {
     return;
   }
   
-
   $output = "<div id='dastra-cookie-consent' data-widgetid='". $widget_id ."' data-lang='". $locale ."'></div>";
 
   if ($track_user) {
