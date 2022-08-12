@@ -1,4 +1,4 @@
-<?php
+dastra-widget<?php
 /**
  * @package Dastra
  * @version 0.1.2
@@ -88,7 +88,7 @@ function dastra_plugin_settings_page() {
   }
 }
 
-add_action('wp_head', 'dastra_hook_head', 1);
+add_action('wp_body_open', 'dastra_hook_head', 1);
 add_action('admin_enqueue_scripts', 'dastra_enqueue_stylesheet');
 
 function dastra_enqueue_stylesheet() {
