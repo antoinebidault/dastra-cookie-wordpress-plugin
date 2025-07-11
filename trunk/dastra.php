@@ -68,8 +68,8 @@ function dastra_plugin_settings_page() {
     <div class="dastra-modal">
       <h2 class="dastra-title"><?php _e('The Dastra CMP is installed', 'dastra'); ?></h2>
       <p class="dastra-subtitle"><?php _e('The Dastra CMP will be visible on your pages.', 'dastra'); ?></p>
-      <a class="dastra-button dastra" href="https://app.dastra.eu/workspace/<?php echo $workspace_id ?>/0/cookie-widget/integration/<?php echo $widget_id ?>/edit"><?php _e('Go to my Dastra settings', 'dastra'); ?></a>
-      <a class="dastra-button dastra" href="https://app.dastra.eu/workspace/<?php echo $workspace_id ?>/0/cookie-widget/analytics?widgetId=<?php echo $widget_id ?>"><?php _e('Analytics', 'dastra'); ?></a>
+      <a class="dastra-button dastra" href="https://app.dastra.eu/workspace/<?php echo $workspace_id ?>/cookie-widget/integration/<?php echo $widget_id ?>/edit"><?php _e('Go to my Dastra settings', 'dastra'); ?></a>
+      <a class="dastra-button dastra" href="https://app.dastra.eu/workspace/<?php echo $workspace_id ?>/cookie-widget/analytics?widgetId=<?php echo $widget_id ?>"><?php _e('Analytics', 'dastra'); ?></a>
       <a class="dastra-button dastra" href="<?php echo $add_to_dastra_link; ?>"><?php _e('Reconfigure', 'dastra'); ?></a>
     </div>
     <p class="dastra-notice"><?php _e('Loving Dastra <b style="color:red">♥</b> ? Rate us on the <a target="_blank" href="https://wordpress.org/support/plugin/dastra/reviews/?filter=5">Wordpress Plugin Directory</a>', 'dastra'); ?></p>
