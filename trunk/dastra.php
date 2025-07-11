@@ -1,12 +1,12 @@
 <?php
 /**
  * @package Dastra
- * @version 0.1.5
+ * @version 0.1.6
  * Plugin Name: Dastra
  * Plugin URI: http://wordpress.org/plugins/dastra/
  * Description: Dastra is a cookie consent management platform
  * Author: Dastra
- * Version: 0.1.5
+ * Version: 0.1.6
  * Author URI: https://dastra.eu
  *
  * Text Domain: dastra
